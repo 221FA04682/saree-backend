@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
+const cors = require('cors');   // ✅ ONLY ONCE
 const mongoose = require('mongoose');
 const path = require('path');
 
@@ -15,16 +15,14 @@ const homeconfigRoutes = require('./routes/homeconfig.routes');
 const app = express();
 
 
-// ✅ ── CORS FIX (FINAL WORKING VERSION) ───────────────────────
-const cors = require('cors');
-
+// ✅ ── CORS FIX ───────────────────────────────────────────────
 app.use(cors({
-  origin: '*',   // allow ALL (for now)
+  origin: '*',
   methods: ['GET','POST','PUT','PATCH','DELETE','OPTIONS'],
   allowedHeaders: ['Content-Type','Authorization']
 }));
 
-app.options('*', cors()); // VERY IMPORTANT
+app.options('*', cors());
 
 
 // ✅ ── Body Parsers ───────────────────────────────────────────
